@@ -2,19 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid : MonoBehaviour {
+public class Grid {
 
-    public static int width = 10;
-    public static int height = 20;
-    
+    public int columns = 10;
+    public int rows = 20;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Tile[] grid;
+    public TileGroup piece;
+
+    public void CreateGrid(int width, int height) {
+        columns = width;
+        rows = height;
+
+        grid = new Tile[columns * rows];
+
+        CreateTiles();
+    }
+
+    private void CreateTiles() {
+        var total = grid.Length;
+
+        for (var i = 0; i < total; i++) {
+            var tile = new Tile {
+                score = 0
+            };
+            grid[i] = tile;
+        }
+    }
+
+    public TileGroup CreatePiece() {
+        piece = new TileGroup();
+
+        return piece;
+    }
 }
