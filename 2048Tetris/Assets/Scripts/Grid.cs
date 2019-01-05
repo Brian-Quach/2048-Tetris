@@ -14,7 +14,7 @@ public class Grid {
         columns = width;
         rows = height;
 
-        grid = new Tile[columns * rows];
+        grid = new Tile[columns * (rows+4)];
 
         CreateTiles();
     }
@@ -24,6 +24,7 @@ public class Grid {
 
         for (var i = 0; i < total; i++) {
             var tile = new Tile {
+                id = i,
                 score = 0
             };
             grid[i] = tile;
@@ -34,5 +35,23 @@ public class Grid {
         piece = new TileGroup();
 
         return piece;
+    }
+
+    public int GetTileID(Vector2 coordinates) {
+        int tileID = (int) coordinates.x + ( (int) (coordinates.y + 4) * columns);
+        return tileID;
+    }
+
+    public Vector2 GetTileCoordinates(int index) {
+        Vector2 coordinates = new Vector2();
+        coordinates.x = Mathf.FloorToInt(index % columns);
+        coordinates.y = Mathf.FloorToInt(index / columns);
+
+        return coordinates;
+    }
+
+    public Vector2 RoundVector(Vector2 vec) {
+        return new Vector2(Mathf.Round(vec.x),
+                           Mathf.Round(vec.y));
     }
 }

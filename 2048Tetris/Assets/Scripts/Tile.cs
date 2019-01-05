@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tile {
 
+    public int id = -1;
     public int score = 2;
 	
 	void Upgrade () {
