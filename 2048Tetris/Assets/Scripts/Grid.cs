@@ -33,6 +33,24 @@ public class Grid {
         }
     }
     
+    public bool HasTile(Vector2 coordinates) {
+        coordinates = RoundVector(coordinates);
+        return (grid[GetTileID(coordinates)].score != 0);   
+    }
+
+    public bool InGrid(Vector2 coordinates) {
+        coordinates = RoundVector(coordinates);
+        return (coordinates.x >= 0 && coordinates.y >= 0 && coordinates.x < columns);
+    }
+
+    // Return true if slot is empty + in grid
+    public bool IsValidSlot(Vector2 coordinates) {
+        Debug.Log(coordinates.x + "," + coordinates.y);
+
+        if (coordinates.y >= rows) return true;
+
+        return (InGrid(coordinates) && !HasTile(coordinates));
+    }
 
     public int GetTileID(Vector2 coordinates) {
         int tileID = (int) coordinates.x + ( (int) (coordinates.y) * columns);

@@ -32,6 +32,7 @@ public class TetrisBoard : MonoBehaviour {
 
     public void Reset() {
         grid = new Grid();
+        GridSetup();
     }
 
     public void SpawnTile() {
@@ -48,13 +49,39 @@ public class TetrisBoard : MonoBehaviour {
     void Update () {
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             currentTile.MoveRight();
+
+            if (!CurrentPositionValid()) {
+                currentTile.MoveLeft();
+            }
         } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             currentTile.MoveLeft();
+
+            if (!CurrentPositionValid()) {
+                currentTile.MoveRight();
+            }
         } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
             currentTile.RotateCW();
+
+            if (!CurrentPositionValid()) {
+                currentTile.RotateCCW();
+            }
         } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
             currentTile.MoveDown();
-        }
 
+            if (!CurrentPositionValid()) {
+                currentTile.MoveUp();
+            }
+        }
+    }
+
+    private bool CurrentPositionValid() {
+        Vector2[] tiles = currentTile.GetTilePositions();
+
+        foreach(Vector2 tile in tiles) {
+            if (!grid.IsValidSlot(tile)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

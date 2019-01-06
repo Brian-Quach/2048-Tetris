@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class TileGroup : MonoBehaviour {
     
+    public Vector2[] GetTilePositions() {
+        var positions = new List<Vector2>();
+
+        foreach(Transform tile in transform) {
+            positions.Add(tile.position);
+        }
+
+        return positions.ToArray();
+    }
+
     public void MoveLeft() {
         transform.position += new Vector3(-1, 0, 0);
     }
