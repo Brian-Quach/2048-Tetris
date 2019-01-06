@@ -11,6 +11,7 @@ public class TetrisBoard : MonoBehaviour {
     [Header("Tile Properties")]
     [Range(0, .5f)]
     public float upgradePercent = .05f;
+    public float fallSpeed = 1;
 
     public Grid grid;
     public Spawner spawner;
@@ -19,6 +20,7 @@ public class TetrisBoard : MonoBehaviour {
     // Used for calculations when needed
     private int tempX;
     private int tempY;
+    private float lastFall = 0;
 
     private void Awake() {
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
@@ -37,6 +39,10 @@ public class TetrisBoard : MonoBehaviour {
 
     public void SpawnTile() {
         currentTile = spawner.SpawnTile().GetComponent<TileGroup>();
+        if (!CurrentPositionValid()) {
+            Debug.Log("GAME OVER");
+            Destroy(gameObject);
+        }
     }
 
     public void GridSetup() {
@@ -65,11 +71,13 @@ public class TetrisBoard : MonoBehaviour {
             if (!CurrentPositionValid()) {
                 currentTile.RotateCCW();
             }
-        } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+        } else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFall >= fallSpeed) {
             currentTile.MoveDown();
 
             if (!CurrentPositionValid()) {
                 currentTile.MoveUp();
+            } else {
+                lastFall = Time.time;
             }
         }
     }

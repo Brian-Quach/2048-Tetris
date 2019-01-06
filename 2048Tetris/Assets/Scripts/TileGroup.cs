@@ -4,7 +4,18 @@ using UnityEngine;
 
 
 public class TileGroup : MonoBehaviour {
+
+    public GameObject[] blocks;
     
+    private void Awake() {
+        var innerTiles = new List<GameObject>();
+        foreach (Transform childTransform in transform) {
+            GameObject child = childTransform.gameObject;
+            innerTiles.Add(child);
+        }
+        blocks = innerTiles.ToArray();
+    }
+
     public Vector2[] GetTilePositions() {
         var positions = new List<Vector2>();
 

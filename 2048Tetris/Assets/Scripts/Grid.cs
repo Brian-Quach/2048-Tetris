@@ -7,7 +7,7 @@ public class Grid {
     public int columns;
     public int rows;
 
-    public Tile[] grid;
+    public int[] grid;
 
     public void CreateGrid(
         int width,
@@ -16,7 +16,7 @@ public class Grid {
         columns = width;
         rows = height;
 
-        grid = new Tile[columns * (rows)];
+        grid = new int[columns * (rows)];
 
         CreateTiles();
     }
@@ -25,17 +25,17 @@ public class Grid {
         var total = grid.Length;
 
         for (var i = 0; i < total; i++) {
-            var tile = new Tile {
-                id = i,
-                score = 0
-            };
-            grid[i] = tile;
+            grid[i] = 0;
         }
+    }
+
+    public void InsertTile(Tile tile, Vector2 coordinates) {
+
     }
     
     public bool HasTile(Vector2 coordinates) {
         coordinates = RoundVector(coordinates);
-        return (grid[GetTileID(coordinates)].score != 0);   
+        return (grid[GetTileID(coordinates)] != 0);   
     }
 
     public bool InGrid(Vector2 coordinates) {
@@ -45,9 +45,8 @@ public class Grid {
 
     // Return true if slot is empty + in grid
     public bool IsValidSlot(Vector2 coordinates) {
-        Debug.Log(coordinates.x + "," + coordinates.y);
-
-        if (coordinates.y >= rows) return true;
+        if (coordinates.y >= rows + 3) return false;
+        else if (coordinates.y >= rows) return true;
 
         return (InGrid(coordinates) && !HasTile(coordinates));
     }

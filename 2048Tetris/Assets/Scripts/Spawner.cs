@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour {
                     transform.position,
                     Quaternion.identity);
         newTile.SetActive(false);
+ 
         return newTile;
     }
 
