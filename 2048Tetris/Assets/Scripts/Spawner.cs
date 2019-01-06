@@ -7,14 +7,9 @@ public class Spawner : MonoBehaviour {
     public GameObject[] tiles;
 
     private GameObject nextTile;
-    private GameObject currentTile;
+    
 
-    // Use this for initialization
-    void Start () {
-        SpawnNextTile();
-    }
-
-    public GameObject CreateTile() {
+    private GameObject CreateTile() {
         GameObject newTile = Instantiate(tiles[Random.Range(0, tiles.Length)],
                     transform.position,
                     Quaternion.identity);
@@ -22,17 +17,15 @@ public class Spawner : MonoBehaviour {
         return newTile;
     }
 
-    public void SpawnNextTile() {
+    public GameObject SpawnTile() {
         if(nextTile == null) {
             nextTile = CreateTile();
         }
-        currentTile = nextTile;
-        currentTile.SetActive(true);
+        GameObject next = nextTile;
+        next.SetActive(true);
         nextTile = CreateTile();
+
+        return next;
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

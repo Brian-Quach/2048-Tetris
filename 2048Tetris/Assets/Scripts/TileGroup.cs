@@ -2,19 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GroupType{
-    I,
-    J,
-    L,
-    O,
-    S,
-    T,
-    Z
-}
-public class TileGroup {
 
-    public Tile[] tiles;
-    public int pivotTileID;
+public class TileGroup : MonoBehaviour {
+    
+    public void MoveLeft() {
+        transform.position += new Vector3(-1, 0, 0);
+    }
 
+    public void MoveRight() {
+        transform.position += new Vector3(1, 0, 0);
+    }
 
+    public void MoveDown() {
+        transform.position += new Vector3(0, -1, 0);
+    }
+
+    public void MoveUp() {
+        transform.position += new Vector3(0, 1, 0);
+    }
+
+    public void RotateCW() {
+        transform.Rotate(0, 0, -90);
+    }
+
+    public void RotateCCW() {
+        transform.Rotate(0, 0, 90);
+    }
 }

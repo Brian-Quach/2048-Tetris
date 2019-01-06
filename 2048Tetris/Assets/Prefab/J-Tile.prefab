@@ -38,6 +38,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4759426529426268}
+  - component: {fileID: 114195472491391106}
   m_Layer: 0
   m_Name: J-Tile
   m_TagString: Untagged
@@ -299,6 +300,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114195472491391106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1325880791723526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b5cf5f7d114aad4bbac67b60ec05ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212408367402857036
 SpriteRenderer:
   m_ObjectHideFlags: 1

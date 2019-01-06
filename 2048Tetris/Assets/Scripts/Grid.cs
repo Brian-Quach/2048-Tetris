@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Grid {
 
-    public int columns = 10;
-    public int rows = 20;
+    public int columns;
+    public int rows;
 
     public Tile[] grid;
-    public TileGroup piece;
 
-    public void CreateGrid(int width, int height) {
+    public void CreateGrid(
+        int width,
+        int height
+        ) {
         columns = width;
         rows = height;
 
-        grid = new Tile[columns * (rows+4)];
+        grid = new Tile[columns * (rows)];
 
         CreateTiles();
     }
@@ -30,15 +32,10 @@ public class Grid {
             grid[i] = tile;
         }
     }
-
-    public TileGroup CreatePiece() {
-        piece = new TileGroup();
-
-        return piece;
-    }
+    
 
     public int GetTileID(Vector2 coordinates) {
-        int tileID = (int) coordinates.x + ( (int) (coordinates.y + 4) * columns);
+        int tileID = (int) coordinates.x + ( (int) (coordinates.y) * columns);
         return tileID;
     }
 
