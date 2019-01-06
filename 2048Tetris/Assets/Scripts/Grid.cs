@@ -30,7 +30,7 @@ public class Grid {
     }
 
     public void InsertTile(Tile tile, Vector2 coordinates) {
-
+        grid[GetTileID(coordinates)] = tile.score;
     }
     
     public bool HasTile(Vector2 coordinates) {

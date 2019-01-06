@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222469188585451686}
   - component: {fileID: 61952777291409658}
   - component: {fileID: 50913088458490378}
+  - component: {fileID: 114365539552940488}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -58,6 +59,7 @@ GameObject:
   - component: {fileID: 222286123753933252}
   - component: {fileID: 61126443188016844}
   - component: {fileID: 50357460044803072}
+  - component: {fileID: 114586172169925222}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -77,6 +79,7 @@ GameObject:
   - component: {fileID: 222626831683389066}
   - component: {fileID: 61813222518193224}
   - component: {fileID: 50643060290899406}
+  - component: {fileID: 114496526152866214}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -96,6 +99,7 @@ GameObject:
   - component: {fileID: 222761376452452510}
   - component: {fileID: 61210254751742006}
   - component: {fileID: 50591685072142576}
+  - component: {fileID: 114020495814946662}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -300,6 +304,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114020495814946662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1951032266915958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd395e919c72f043b480f4a28a6e31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 2
 --- !u!114 &114095144051771744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,6 +327,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5cf5f7d114aad4bbac67b60ec05ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiles: []
+--- !u!114 &114365539552940488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302741652172216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd395e919c72f043b480f4a28a6e31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 2
+--- !u!114 &114496526152866214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1838409296274848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd395e919c72f043b480f4a28a6e31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 2
+--- !u!114 &114586172169925222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1685613528733164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd395e919c72f043b480f4a28a6e31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 2
 --- !u!212 &212371243385743820
 SpriteRenderer:
   m_ObjectHideFlags: 1

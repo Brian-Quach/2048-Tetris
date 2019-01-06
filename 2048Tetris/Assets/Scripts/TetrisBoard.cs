@@ -76,9 +76,19 @@ public class TetrisBoard : MonoBehaviour {
 
             if (!CurrentPositionValid()) {
                 currentTile.MoveUp();
-            } else {
-                lastFall = Time.time;
+
+                GameObject[] tiles = currentTile.tiles;
+
+                foreach(GameObject tileObj in tiles) {
+                    Debug.Log(tileObj.transform.position.x + "," + tileObj.transform.position.y);
+                    Tile tile = tileObj.GetComponent<Tile>();
+                    Vector2 tileCoords = tileObj.transform.position;
+                    grid.InsertTile(tile, tileCoords);
+                }
+
+                SpawnTile();
             }
+            lastFall = Time.time;
         }
     }
 

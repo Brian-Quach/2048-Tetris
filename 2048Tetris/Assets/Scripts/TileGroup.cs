@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TileGroup : MonoBehaviour {
 
-    public GameObject[] blocks;
+    public GameObject[] tiles;
     
     private void Awake() {
         var innerTiles = new List<GameObject>();
@@ -13,14 +13,14 @@ public class TileGroup : MonoBehaviour {
             GameObject child = childTransform.gameObject;
             innerTiles.Add(child);
         }
-        blocks = innerTiles.ToArray();
+        tiles = innerTiles.ToArray();
     }
 
     public Vector2[] GetTilePositions() {
         var positions = new List<Vector2>();
 
-        foreach(Transform tile in transform) {
-            positions.Add(tile.position);
+        foreach(GameObject tile in tiles) {
+            positions.Add(tile.transform.position);
         }
 
         return positions.ToArray();

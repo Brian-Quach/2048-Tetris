@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 222944417539397078}
   - component: {fileID: 61113264463568618}
   - component: {fileID: 50582561697520914}
+  - component: {fileID: 114897405647073048}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -42,6 +43,7 @@ GameObject:
   - component: {fileID: 222430313509066822}
   - component: {fileID: 61756937592564998}
   - component: {fileID: 50590560923312528}
+  - component: {fileID: 114440530257548564}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -61,6 +63,7 @@ GameObject:
   - component: {fileID: 222306427010139636}
   - component: {fileID: 61556886593157128}
   - component: {fileID: 50383070476732316}
+  - component: {fileID: 114639188842969766}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -80,6 +83,7 @@ GameObject:
   - component: {fileID: 222079589719194262}
   - component: {fileID: 61203313742135998}
   - component: {fileID: 50777462807792478}
+  - component: {fileID: 114236517495801988}
   m_Layer: 0
   m_Name: Tile
   m_TagString: Untagged
@@ -300,6 +304,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114236517495801988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1719664315869070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd395e919c72f043b480f4a28a6e31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 2
+--- !u!114 &114440530257548564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1264812819739096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd395e919c72f043b480f4a28a6e31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 2
+--- !u!114 &114639188842969766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1281463731890424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd395e919c72f043b480f4a28a6e31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 2
 --- !u!114 &114868916319465254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,6 +351,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5cf5f7d114aad4bbac67b60ec05ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiles: []
+--- !u!114 &114897405647073048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1233338411807742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd395e919c72f043b480f4a28a6e31b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 2
 --- !u!212 &212339601847110242
 SpriteRenderer:
   m_ObjectHideFlags: 1

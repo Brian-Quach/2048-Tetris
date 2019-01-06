@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour {
 
+    public int score = 2;
+
 	// Use this for initialization
 	void Start () {
 		
