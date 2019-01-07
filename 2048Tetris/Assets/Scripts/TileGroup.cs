@@ -26,6 +26,12 @@ public class TileGroup : MonoBehaviour {
         return positions.ToArray();
     }
 
+    public void SplitTiles() {
+        foreach (GameObject tile in tiles) {
+            tile.transform.SetParent(null);
+        }
+    }
+
     public void MoveLeft() {
         transform.position += new Vector3(-1, 0, 0);
     }

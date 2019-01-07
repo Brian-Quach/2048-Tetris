@@ -39,7 +39,7 @@ public class TetrisBoard : MonoBehaviour {
 
     public void SpawnTile() {
         currentTile = spawner.SpawnTile().GetComponent<TileGroup>();
-        if (!CurrentPositionValid()) {
+        if (CurrentPositionValid() != 1) {
             Debug.Log("GAME OVER");
             Destroy(gameObject);
         }
@@ -56,25 +56,25 @@ public class TetrisBoard : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             currentTile.MoveRight();
 
-            if (!CurrentPositionValid()) {
+            if (CurrentPositionValid() != 1) {
                 currentTile.MoveLeft();
             }
         } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             currentTile.MoveLeft();
 
-            if (!CurrentPositionValid()) {
+            if (CurrentPositionValid() != 1) {
                 currentTile.MoveRight();
             }
         } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
             currentTile.RotateCW();
 
-            if (!CurrentPositionValid()) {
+            if (CurrentPositionValid() != 1) {
                 currentTile.RotateCCW();
             }
         } else if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFall >= fallSpeed) {
             currentTile.MoveDown();
 
-            if (!CurrentPositionValid()) {
+            if (CurrentPositionValid() != 1) {
                 currentTile.MoveUp();
 
                 GameObject[] tiles = currentTile.tiles;
@@ -86,20 +86,27 @@ public class TetrisBoard : MonoBehaviour {
                     grid.InsertTile(tile, tileCoords);
                 }
 
+                currentTile.SplitTiles();
+                Destroy(currentTile.gameObject);
+
                 SpawnTile();
             }
             lastFall = Time.time;
         }
     }
 
-    private bool CurrentPositionValid() {
+    // Potential Change >> Return a status code or something instead:
+    // 1 for full validity
+    // 0 for full invalidity
+    // 2(?) for no partial validity (ie. overlap exists, but there is a piece on board)
+    private int CurrentPositionValid() {
         Vector2[] tiles = currentTile.GetTilePositions();
 
         foreach(Vector2 tile in tiles) {
             if (!grid.IsValidSlot(tile)) {
-                return false;
+                return 0;
             }
         }
-        return true;
+        return 1;
     }
 }
