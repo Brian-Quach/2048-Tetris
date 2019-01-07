@@ -108,7 +108,15 @@ public class TetrisBoard : MonoBehaviour {
 
                 SpawnTile();
             }
+            
+
             lastFall = Time.time;
+        }
+    }
+
+    private void TestFreeTiles() {
+        foreach(GameObject tile in freeTiles) {
+            tile.transform.position = grid.MoveTileDown(tile.transform.position);
         }
     }
 
