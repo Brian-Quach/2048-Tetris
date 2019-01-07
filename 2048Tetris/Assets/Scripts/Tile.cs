@@ -5,7 +5,8 @@ using UnityEngine;
 public class Tile : MonoBehaviour {
 
     public int score = 2;
-
+    public int posID = -1;
+    
 	// Use this for initialization
 	void Start () {
 		

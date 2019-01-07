@@ -45,8 +45,7 @@ public class Grid {
 
     // Return true if slot is empty + in grid
     public bool IsValidSlot(Vector2 coordinates) {
-        if (coordinates.y >= rows + 3) return false;
-        else if (coordinates.y >= rows) return true;
+        //if (coordinates.y >= rows) return true;
 
         return (InGrid(coordinates) && !HasTile(coordinates));
     }
@@ -57,9 +56,10 @@ public class Grid {
     }
 
     public Vector2 GetTileCoordinates(int index) {
-        Vector2 coordinates = new Vector2();
-        coordinates.x = Mathf.FloorToInt(index % columns);
-        coordinates.y = Mathf.FloorToInt(index / columns);
+        Vector2 coordinates = new Vector2 {
+            x = Mathf.FloorToInt(index % columns),
+            y = Mathf.FloorToInt(index / columns)
+        };
 
         return coordinates;
     }
@@ -67,5 +67,25 @@ public class Grid {
     public Vector2 RoundVector(Vector2 vec) {
         return new Vector2(Mathf.Round(vec.x),
                            Mathf.Round(vec.y));
+    }
+
+    // Move tile and return coords of tile location.
+    public Vector2 MoveTileDown(Vector2 coordinates) {
+        coordinates = RoundVector(coordinates);
+
+        Vector2 newCoordinates = coordinates + (new Vector2(0, -1));
+        if (IsValidSlot(newCoordinates)) {
+            // Move tile in coordinates to newcoordinates
+            int tileIndex = GetTileID(coordinates);
+            int newIndex = GetTileID(newCoordinates);
+
+            grid[newIndex] = grid[tileIndex];
+            grid[tileIndex] = 0;
+
+            return newCoordinates;
+        } else {
+            // Invalid move, don't do anything.
+            return coordinates;
+        }
     }
 }

@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridWidth: 10
-  gridHeight: 15
+  gridHeight: 20
   upgradePercent: 0.05
   fallSpeed: 0.5
   spawner: {fileID: 0}

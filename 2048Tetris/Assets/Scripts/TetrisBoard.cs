@@ -22,6 +22,8 @@ public class TetrisBoard : MonoBehaviour {
     private int tempY;
     private float lastFall = 0;
 
+    public GameObject[] freeTiles = new GameObject[0];
+
     private void Awake() {
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
     }
@@ -53,6 +55,12 @@ public class TetrisBoard : MonoBehaviour {
     }
     
     void Update () {
+
+        currentTile.transform.position = new Vector3(
+            Mathf.Round(currentTile.transform.position.x),
+            Mathf.Round(currentTile.transform.position.y),
+            0);
+
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             currentTile.MoveRight();
 
@@ -82,9 +90,18 @@ public class TetrisBoard : MonoBehaviour {
                 foreach(GameObject tileObj in tiles) {
                     Debug.Log(tileObj.transform.position.x + "," + tileObj.transform.position.y);
                     Tile tile = tileObj.GetComponent<Tile>();
-                    Vector2 tileCoords = tileObj.transform.position;
+                    Vector2 tileCoords = new Vector2(
+                        Mathf.Round(tileObj.transform.position.x),
+                        Mathf.Round(tileObj.transform.position.y));
                     grid.InsertTile(tile, tileCoords);
+                    tile.posID = grid.GetTileID(tileCoords);
                 }
+
+                var newFreeTiles = new GameObject[tiles.Length + freeTiles.Length];
+                freeTiles.CopyTo(newFreeTiles, 0);
+                tiles.CopyTo(newFreeTiles, freeTiles.Length);
+
+                freeTiles = newFreeTiles;
 
                 currentTile.SplitTiles();
                 Destroy(currentTile.gameObject);
