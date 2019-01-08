@@ -32,6 +32,19 @@ public class TileGroup : MonoBehaviour {
         }
     }
 
+    public void SetScores(float upgradePercent) {
+        foreach(GameObject tile in tiles) {
+            Tile tileObj = tile.GetComponent<Tile>();
+            int score = 2;
+            float rand = Random.Range(0f, 1f);
+            while(rand <= upgradePercent) {
+                score *= 2;
+                rand = Random.Range(0f, 1f);
+            }
+            tileObj.score = score;
+        }
+    }
+
     public void MoveLeft() {
         transform.position += new Vector3(-1, 0, 0);
     }

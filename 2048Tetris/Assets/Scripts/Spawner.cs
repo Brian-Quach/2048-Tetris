@@ -6,6 +6,8 @@ public class Spawner : MonoBehaviour {
 
     public GameObject[] tiles;
 
+    public float UpgradePercennt;
+
     private GameObject nextTile;
     
 
@@ -13,6 +15,7 @@ public class Spawner : MonoBehaviour {
         GameObject newTile = Instantiate(tiles[Random.Range(0, tiles.Length)],
                     transform.position,
                     Quaternion.identity);
+
         newTile.SetActive(false);
  
         return newTile;

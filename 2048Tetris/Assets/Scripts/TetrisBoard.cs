@@ -10,8 +10,8 @@ public class TetrisBoard : MonoBehaviour {
 
     [Header("Tile Properties")]
     [Range(0, .5f)]
-    public float upgradePercent = .05f;
-    public float fallSpeed = 1;
+    public float upgradePercent = .1f;
+    public float fallSpeed = 1f;
 
     public Grid grid;
     public Spawner spawner;
@@ -21,6 +21,9 @@ public class TetrisBoard : MonoBehaviour {
     private int tempX;
     private int tempY;
     private float lastFall = 0;
+
+    private float singleFallSpeed = 0.25f;
+    private float lastFallSingle = 0;
 
     public GameObject[] freeTiles = new GameObject[0];
 
@@ -41,6 +44,7 @@ public class TetrisBoard : MonoBehaviour {
 
     public void SpawnTile() {
         currentTile = spawner.SpawnTile().GetComponent<TileGroup>();
+        currentTile.SetScores(upgradePercent);
         if (CurrentPositionValid() != 1) {
             Debug.Log("GAME OVER");
             Destroy(gameObject);
@@ -111,6 +115,12 @@ public class TetrisBoard : MonoBehaviour {
             
 
             lastFall = Time.time;
+        }
+
+        if (Time.time - lastFallSingle >= singleFallSpeed) {
+            foreach(GameObject tile in freeTiles) {
+
+            }
         }
     }
 
