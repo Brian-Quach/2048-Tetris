@@ -161,6 +161,7 @@ MonoBehaviour:
   - {fileID: 1974924317981858, guid: a34e6feefe7352b428d44a0727650248, type: 2}
   - {fileID: 1380605717221950, guid: 3f3cb6f0adb131d4fbbde0a3427d82db, type: 2}
   - {fileID: 1231854621110284, guid: 74e039cbcd369be46b4633cea885efdc, type: 2}
+  UpgradePercennt: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,10 +268,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridWidth: 10
   gridHeight: 20
-  upgradePercent: 0.05
+  upgradePercent: 0.5
   fallSpeed: 0.5
   spawner: {fileID: 0}
   currentTile: {fileID: 0}
+  freeTiles: []
 --- !u!4 &2100774976
 Transform:
   m_ObjectHideFlags: 0

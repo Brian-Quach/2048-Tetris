@@ -22,10 +22,10 @@ public class TetrisBoard : MonoBehaviour {
     private int tempY;
     private float lastFall = 0;
 
-    private float singleFallSpeed = 0.25f;
+    private float singleFallSpeed = .25f;
     private float lastFallSingle = 0;
 
-    public GameObject[] freeTiles = new GameObject[0];
+    //public GameObject[] freeTiles = new GameObject[0];
 
     private void Awake() {
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
@@ -97,15 +97,15 @@ public class TetrisBoard : MonoBehaviour {
                     Vector2 tileCoords = new Vector2(
                         Mathf.Round(tileObj.transform.position.x),
                         Mathf.Round(tileObj.transform.position.y));
-                    grid.InsertTile(tile, tileCoords);
+                    grid.InsertTile(tile, tileCoords, tileObj);
                     tile.posID = grid.GetTileID(tileCoords);
                 }
 
-                var newFreeTiles = new GameObject[tiles.Length + freeTiles.Length];
-                freeTiles.CopyTo(newFreeTiles, 0);
-                tiles.CopyTo(newFreeTiles, freeTiles.Length);
+                //var newFreeTiles = new GameObject[tiles.Length + freeTiles.Length];
+                //freeTiles.CopyTo(newFreeTiles, 0);
+                //tiles.CopyTo(newFreeTiles, freeTiles.Length);
 
-                freeTiles = newFreeTiles;
+                //freeTiles = newFreeTiles;
 
                 currentTile.SplitTiles();
                 Destroy(currentTile.gameObject);
@@ -118,19 +118,43 @@ public class TetrisBoard : MonoBehaviour {
         }
 
         if (Time.time - lastFallSingle >= singleFallSpeed) {
-            foreach(GameObject tile in freeTiles) {
-
-            }
+            TestFreeTiles();
+            lastFallSingle = Time.time;
         }
     }
 
     private void TestFreeTiles() {
-        foreach(GameObject tile in freeTiles) {
-            tile.transform.position = grid.MoveTileDown(tile.transform.position);
+        for (int r = grid.rows; r >= 0; r--) {
+            for(int c = 0; c < grid.columns; c++) {
+                Vector2 coordinates = new Vector2(r, c);
+                if (grid.HasTile(coordinates)) {
+                    grid.MoveTileDown(coordinates);
+                }
+            }
         }
     }
 
+    private void MergeTopLayer() {
+
+    }
+
+    private void MergeTiles(GameObject tile1, GameObject tile2) {
+        // Check that tile1 is above tile2
+    }
+
+    //private void MergeTile(GameObject tileObj) {
+    //    Tile tile = tileObj.GetComponent<Tile>();
+    //    int tileSore = tile.score;
+    //    Vector2 tileUnderCoords = (Vector2)tileObj.transform.position + (new Vector2(0, -1));
+    //    if (tileSore == 0) return;
+    //    else if (tile.score == grid.GetTileScore(tileUnderCoords)) {
+    //        //TODO: Clean this up and make animate it
+
+    //    }
+    //}
+
     // Potential Change >> Return a status code or something instead:
+    // Use status to fix issue with spawning tiles (should be able to spawn partially valid stuff)
     // 1 for full validity
     // 0 for full invalidity
     // 2(?) for no partial validity (ie. overlap exists, but there is a piece on board)

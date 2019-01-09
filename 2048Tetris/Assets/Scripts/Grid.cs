@@ -8,6 +8,7 @@ public class Grid {
     public int rows;
 
     public int[] grid;
+    public GameObject[] tiles;
 
     public void CreateGrid(
         int width,
@@ -17,6 +18,7 @@ public class Grid {
         rows = height;
 
         grid = new int[columns * (rows)];
+        tiles = new GameObject[columns * rows];
 
         CreateTiles();
     }
@@ -29,8 +31,18 @@ public class Grid {
         }
     }
 
-    public void InsertTile(Tile tile, Vector2 coordinates) {
-        grid[GetTileID(coordinates)] = tile.score;
+    public void InsertTile(Tile tile, Vector2 coordinates, GameObject tileObj) {
+        int index = GetTileID(coordinates);
+        grid[index] = tile.score;
+        tiles[index] = tileObj;
+    }
+
+    private void DeleteTile(Vector2 coordinates) {
+        int index = GetTileID(coordinates);
+        grid[index] = 0;
+
+        Object.Destroy(tiles[index]);
+        tiles[index] = null;
     }
     
     public bool HasTile(Vector2 coordinates) {
@@ -40,7 +52,7 @@ public class Grid {
 
     public bool InGrid(Vector2 coordinates) {
         coordinates = RoundVector(coordinates);
-        return (coordinates.x >= 0 && coordinates.y >= 0 && coordinates.x < columns);
+        return (coordinates.x >= 0 && coordinates.y >= 0 && coordinates.x < columns && coordinates.y < rows);
     }
 
     // Return true if slot is empty + in grid
@@ -69,23 +81,44 @@ public class Grid {
                            Mathf.Round(vec.y));
     }
 
-    // Move tile and return coords of tile location.
-    public Vector2 MoveTileDown(Vector2 coordinates) {
-        coordinates = RoundVector(coordinates);
+    // Move tile and return coords of tile location. Return true if something moved
+    public bool MoveTileDown(Vector2 coordinates) {
+        if (HasTile(coordinates)) {
 
-        Vector2 newCoordinates = coordinates + (new Vector2(0, -1));
-        if (IsValidSlot(newCoordinates)) {
-            // Move tile in coordinates to newcoordinates
+            coordinates = RoundVector(coordinates);
+
+            Vector2 newCoordinates = coordinates + (new Vector2(0, -1));
+            if (!InGrid(newCoordinates)) return false;
+
             int tileIndex = GetTileID(coordinates);
             int newIndex = GetTileID(newCoordinates);
 
-            grid[newIndex] = grid[tileIndex];
-            grid[tileIndex] = 0;
 
-            return newCoordinates;
-        } else {
-            // Invalid move, don't do anything.
-            return coordinates;
+            // If tile matches below tile, remove lower tile and double score
+            if (grid[tileIndex] == grid[newIndex]) {
+                grid[tileIndex] *= 2;
+                tiles[tileIndex].GetComponent<Tile>().score *= 2;
+                DeleteTile(newCoordinates);
+            }
+
+            if (IsValidSlot(newCoordinates)) {
+                // Move tile in coordinates to newcoordinates
+
+                grid[newIndex] = grid[tileIndex];
+                grid[tileIndex] = 0;
+                tiles[newIndex] = tiles[tileIndex];
+                tiles[tileIndex] = null;
+                
+                tiles[newIndex].transform.position = newCoordinates;
+                return true;
+            }
         }
+        return false;
+    }
+
+    public int GetTileScore(Vector2 coordinates) {
+        coordinates = RoundVector(coordinates);
+        if (!InGrid(coordinates)) return -1;
+        else return grid[GetTileID(coordinates)];
     }
 }
