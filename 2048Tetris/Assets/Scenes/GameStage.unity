@@ -155,12 +155,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 1117688678079010, guid: 2339d6436a343e2418ab03c2ebb48e86, type: 2}
-  - {fileID: 1325880791723526, guid: 0cc134ebeacc4d542ad3bcd3b8e18371, type: 2}
-  - {fileID: 1138507933257562, guid: 46cdb045192336f4ab94ecd0aa932f23, type: 2}
-  - {fileID: 1943351363528736, guid: d963b7da15f12814081a0584465e86cc, type: 2}
-  - {fileID: 1974924317981858, guid: a34e6feefe7352b428d44a0727650248, type: 2}
-  - {fileID: 1380605717221950, guid: 3f3cb6f0adb131d4fbbde0a3427d82db, type: 2}
-  - {fileID: 1231854621110284, guid: 74e039cbcd369be46b4633cea885efdc, type: 2}
+  - {fileID: 1042880916511264, guid: 0cc134ebeacc4d542ad3bcd3b8e18371, type: 2}
+  - {fileID: 1411207362389016, guid: 46cdb045192336f4ab94ecd0aa932f23, type: 2}
+  - {fileID: 1370721787722152, guid: d963b7da15f12814081a0584465e86cc, type: 2}
+  - {fileID: 1748257556609184, guid: a34e6feefe7352b428d44a0727650248, type: 2}
+  - {fileID: 1709171985281156, guid: 3f3cb6f0adb131d4fbbde0a3427d82db, type: 2}
+  - {fileID: 1769114567347188, guid: 74e039cbcd369be46b4633cea885efdc, type: 2}
   UpgradePercennt: 0
 --- !u!1 &519420028
 GameObject:
@@ -272,7 +272,6 @@ MonoBehaviour:
   fallSpeed: 0.5
   spawner: {fileID: 0}
   currentTile: {fileID: 0}
-  freeTiles: []
 --- !u!4 &2100774976
 Transform:
   m_ObjectHideFlags: 0
